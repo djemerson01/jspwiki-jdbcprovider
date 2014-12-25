@@ -5,8 +5,8 @@ JSPWiki has a pluggable content provider system. This package supplies providers
 
     JDBCProvider - a JDBC-based page provider for JSPWiki.
 
-    Copyright (C) 2004-2007 The JDBCProvider development team.
     Copyright (C) 2014 David Emerson (david@ebizarts.com)
+    Copyright (C) 2004-2007 The JDBCProvider development team.
     
     The original JDBCProvider developer team members are:
       Xan Gregg
