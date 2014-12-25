@@ -20,17 +20,14 @@ JSPWiki has a pluggable content provider system. This package supplies
 providers for page and attachment content backed by a SQL database.
 
 STATUS:
-
-Beta release
-Released 2014-12-26
-Tested with JSPWiki 2.10.1
+    Beta release
+    Released 2014-12-26
+    Tested with JSPWiki 2.10.1
 
 MOST RECENT CHANGES
-
 * Refactor to build against latest JSPWiki and adapt for building with Maven
 
 Previously ...
-
 * Minor bug fixes
 * Works with latest jspwiki versions
 * Works with multiple wiki instances, i.e. multiple databases
@@ -79,9 +76,9 @@ Note: the page provider and the attachment provider operate independently
 
 Example of changes to jspwiki.properties:
 
-jspwiki.pageProvider = com.forthgo.jspwiki.jdbcprovider.JDBCPageProvider
-jspwiki.attachmentProvider = com.forthgo.jspwiki.jdbcprovider.JDBCAttachmentProvider
-jspwiki.jdbcprovider.configuration=jdbcprovider.properties
+    jspwiki.pageProvider = com.forthgo.jspwiki.jdbcprovider.JDBCPageProvider
+    jspwiki.attachmentProvider = com.forthgo.jspwiki.jdbcprovider.JDBCAttachmentProvider
+    jspwiki.jdbcprovider.configuration=jdbcprovider.properties
 
 
 MIGRATING
@@ -98,10 +95,10 @@ Note: Both the WIKI_PAGE and WIKI_ATT table must be empty (truncated).
 
 * Edit the just copied version of jspwiki.properties so that you have
 
-jspwiki.pageProvider =VersioningFileProvider (your old page provider)
-jspwiki.fileSystemProvider.pageDir =/data/wiki/pages (the folder with your wiki pages)
-jspwiki.attachmentProvider = BasicAttachmentProvider (your old attachment provider)
-jspwiki.basicAttachmentProvider.storageDir = /data/wiki/attachments (the folder with your attachments)
+    jspwiki.pageProvider =VersioningFileProvider (your old page provider)
+    jspwiki.fileSystemProvider.pageDir =/data/wiki/pages (the folder with your wiki pages)
+    jspwiki.attachmentProvider = BasicAttachmentProvider (your old attachment provider)
+    jspwiki.basicAttachmentProvider.storageDir = /data/wiki/attachments (the folder with your attachments)
 
 * Edit the jdbcprovider.properties:
 
@@ -132,12 +129,12 @@ On Sybase do this:
   go
 
 * Remove the primary key on WIKI_PAGE and add a new one:
-
-  ALTER TABLE WIKI_PAGE DROP CONSTRAINT PK_WIKI_PAGE
-  go
-  ALTER TABLE dbo.WIKI_PAGE ADD CONSTRAINT PK_WIKI_PAGE
-       PRIMARY KEY NONCLUSTERED (PAGE_NAME,PAGE_VERSION)
-  go
+ 
+    ALTER TABLE WIKI_PAGE DROP CONSTRAINT PK_WIKI_PAGE
+    go
+    ALTER TABLE dbo.WIKI_PAGE ADD CONSTRAINT PK_WIKI_PAGE
+        PRIMARY KEY NONCLUSTERED (PAGE_NAME,PAGE_VERSION)
+    go
 
 * Remove all pages from WIKI_PAGE:
 
