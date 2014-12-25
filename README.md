@@ -15,10 +15,12 @@ JSPWiki has a pluggable content provider system. This package supplies providers
       Milt Taylor
 
 SUMMARY
+
 JSPWiki has a pluggable content provider system. This package supplies
 providers for page and attachment content backed by a SQL database.
 
-STATUS
+STATUS:
+
 Beta release
 Released 2014-12-26
 Tested with JSPWiki 2.10.1
@@ -28,6 +30,7 @@ MOST RECENT CHANGES
 * Refactor to build against latest JSPWiki and adapt for building with Maven
 
 Previously ...
+
 * Minor bug fixes
 * Works with latest jspwiki versions
 * Works with multiple wiki instances, i.e. multiple databases
@@ -43,6 +46,7 @@ Previously ...
 
 
 RECENT CHANGES
+
 All SQL code has been pulled out into separate properties files for easier
 adaption to other databases. Currently there are five flavours supported: mysql, 
 sqlanywhere, mssql, postgresql, and sybase.
@@ -50,6 +54,7 @@ Adapting it to other databases should be close to trivial :-)
 
 
 INSTALL
+
 * If you're upgrading from a previous version, please read the section UPGRADE 
   after reading this section
 
@@ -80,6 +85,7 @@ jspwiki.jdbcprovider.configuration=jdbcprovider.properties
 
 
 MIGRATING
+
 If you have an old provider in your JSPWiki you can migrate your repository to
 use JDBCProvider. 
 
@@ -110,6 +116,7 @@ migrateFromConfiguration = /data/wiki/oldwiki.properties
 
 
 UPGRADE
+
 Preferably make a copy of your tables / database before proceding.
 
 The new version of the page provider does not use the WIKI_PAGE_VERSIONS any
@@ -159,6 +166,7 @@ INSERT INTO WIKI_ATT (PAGENAME, FILENAME, VERSION, CHANGE_TIME, CHANGE_BY, DATA,
 
 
 LICENSE
+
 The JDBCProvider was origially released under the Lesser GNU Public License (LGPL)
   Please see license/lgpl.txt for licensing details
 
@@ -172,10 +180,12 @@ This project contains software from the Apache Software Foundation (the commons-
   commons-Pool home: http://jakarta.apache.org/commons/pool/
 
 ORIGINAL TEAM MEMBERS
+
 Xan Gregg
 Soeren Berg Glasius
 Mikkel Troest
 Milt Taylor
 
 CURRENT MAINTAINER
+
 David Emerson
