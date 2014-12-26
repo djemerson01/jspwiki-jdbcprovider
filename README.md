@@ -14,22 +14,27 @@ JSPWiki has a pluggable content provider system. This package supplies providers
       Mikkel Troest
       Milt Taylor
 
-######SUMMARY
+######Summary
 
 JSPWiki has a pluggable content provider system. This package supplies
 providers for page and attachment content backed by a SQL database.
 
-######STATUS:
+######Status:
 
     Beta release
     Released 2014-12-26
     Tested with JSPWiki 2.10.1
 
-######MOST RECENT CHANGES
-
+######Most recent changes
 * Refactor to build against latest JSPWiki and adapt for building with Maven
 
-Previously ...
+
+######Previous changes summary
+
+All SQL code has been pulled out into separate properties files for easier
+adaption to other databases. Currently there are five flavours supported: mysql, 
+sqlanywhere, mssql, postgresql, and sybase.
+Adapting it to other databases should be close to trivial :-)
 
 * Minor bug fixes
 * Works with latest jspwiki versions
@@ -44,16 +49,7 @@ Previously ...
 * Added support for JNDI data sources
 * Added support for DBCP- and C3P0-specifc pool properties
 
-
-RECENT CHANGES
-
-All SQL code has been pulled out into separate properties files for easier
-adaption to other databases. Currently there are five flavours supported: mysql, 
-sqlanywhere, mssql, postgresql, and sybase.
-Adapting it to other databases should be close to trivial :-)
-
-
-######INSTALL
+######Install
 
 * If you're upgrading from a previous version, please read the section UPGRADE 
   after reading this section
@@ -83,7 +79,7 @@ Example of changes to jspwiki.properties:
     jspwiki.jdbcprovider.configuration=jdbcprovider.properties
 
 
-######MIGRATING
+######Migrating from another page provider
 
 If you have an old provider in your JSPWiki you can migrate your repository to
 use JDBCProvider. 
@@ -116,8 +112,7 @@ Note: Both the WIKI_PAGE and WIKI_ATT table must be empty (truncated).
 * When done, comment out the above line.
 
 
-######UPGRADE
-
+######Upgrading from the previous database schema
 Preferably make a copy of your tables / database before proceding.
 
 The new version of the page provider does not use the WIKI_PAGE_VERSIONS any
@@ -169,7 +164,7 @@ On Sybase do this:
 	go
 ```
 
-######LICENSE
+######License
 
 The JDBCProvider was origially released under the Lesser GNU Public License (LGPL)
   Please see license/lgpl.txt for licensing details
@@ -184,12 +179,12 @@ This project contains software from the Apache Software Foundation (the commons-
 	commons-DBCP home: http://jakarta.apache.org/commons/dbcp/
 	commons-Pool home: http://jakarta.apache.org/commons/pool/
 
-######ORIGINAL TEAM MEMBERS
+######Original team members
 ```
 Xan Gregg
 Soeren Berg Glasius
 Mikkel Troest
 Milt Taylor
 ```
-######CURRENT MAINTAINER
+######Current maintainer
 David Emerson
