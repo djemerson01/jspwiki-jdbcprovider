@@ -1,5 +1,4 @@
 *.class
-
 # Package Files #
 *.jar
 *.war
@@ -12,4 +11,5 @@
 *.bak
 target/
 bin/
+private-config/
 /homewiki.sql
