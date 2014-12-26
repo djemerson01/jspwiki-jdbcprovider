@@ -14,22 +14,22 @@ JSPWiki has a pluggable content provider system. This package supplies providers
       Mikkel Troest
       Milt Taylor
 
-######Summary
+#####Summary
 
 JSPWiki has a pluggable content provider system. This package supplies
 providers for page and attachment content backed by a SQL database.
 
-######Status:
+#####Status:
 
     Beta release
     Released 2014-12-26
     Tested with JSPWiki 2.10.1
 
-######Most recent changes
+#####Most recent changes
 * Refactor to build against latest JSPWiki and adapt for building with Maven
 
 
-######Previous changes summary
+#####Previous changes summary
 
 All SQL code has been pulled out into separate properties files for easier
 adaption to other databases. Currently there are five flavours supported: mysql, 
@@ -49,12 +49,12 @@ Adapting it to other databases should be close to trivial :-)
 * Added support for JNDI data sources
 * Added support for DBCP- and C3P0-specifc pool properties
 
-######Install
+#####Install
 
 * If you're upgrading from a previous version, please read the section UPGRADE 
   after reading this section
 
-Basically,
+<em>Basically,</em>
 
  - Copy the dist/JDBCProvider.jar file into JSPWiki's WEB-INF/lib directory.
  - If you are planing to use DBCP, copy commons-dbcp-1.2.1.jar and commons-pool-1.2.jar in lib  to WEB-INF/lib 
@@ -69,8 +69,8 @@ Basically,
  - Run the appropriate create_tables code to create the database tables (unless
    you are upgrading from a older version of JDBCProvider)
  
-Note: the page provider and the attachment provider operate independently
-      and you may use only one or both.
+<em>Note: the page provider and the attachment provider operate independently
+      and you may use only one or both.</em>
 
 Example of changes to jspwiki.properties:
 
@@ -79,7 +79,7 @@ Example of changes to jspwiki.properties:
     jspwiki.jdbcprovider.configuration=jdbcprovider.properties
 
 
-######Migrating from another page provider
+#####Migrating from another page provider
 
 If you have an old provider in your JSPWiki you can migrate your repository to
 use JDBCProvider. 
@@ -112,7 +112,7 @@ Note: Both the WIKI_PAGE and WIKI_ATT table must be empty (truncated).
 * When done, comment out the above line.
 
 
-######Upgrading from the previous database schema
+#####Upgrading from the previous database schema
 Preferably make a copy of your tables / database before proceding.
 
 The new version of the page provider does not use the WIKI_PAGE_VERSIONS any
@@ -123,7 +123,7 @@ version is stored in both WIKI_PAGE and WIKI_PAGE_VERSIONS
 
 
 On Mysql do this:
-```
+```SQL
 INSERT INTO WIKI_PAGE (NAME, VERSION, CHANGE_TIME, CHANGE_BY, CONTENT)
   SELECT VERSION_NAME, VERSION_NUM, VERSION_MODIFIED, VERSION_MODIFIED_B, VERSION_TEXT
   FROM <your_old_db>.WIKI_PAGE_VERSIONS;
@@ -136,13 +136,13 @@ INSERT INTO WIKI_ATT (PAGENAME, FILENAME, VERSION, CHANGE_TIME, CHANGE_BY, DATA,
 On Sybase do this:
 
 * Remove the foreign key restraint on WIKI_PAGE_VERSIONS :
-```
+```SQL
 	ALTER TABLE dbo.WIKI_PAGE_VERSIONS DROP CONSTRAINT FK_WIKI_VERSIONS_WIKI_PAGE
 	go
 ```
 
 * Remove the primary key on WIKI_PAGE and add a new one:
-```
+```SQL
     ALTER TABLE WIKI_PAGE DROP CONSTRAINT PK_WIKI_PAGE
     go
     ALTER TABLE dbo.WIKI_PAGE ADD CONSTRAINT PK_WIKI_PAGE
@@ -150,21 +150,21 @@ On Sybase do this:
     go
 ```
 * Remove all pages from WIKI_PAGE:
-```
+```SQL
 	TRUNCATE TABLE dbo.WIKI_PAGE
 	go
 ```
 * Move all pages from WIKI_PAGE_VERSIONS to WIKI_PAGE:
-```
+```SQL
 	INSERT WIKI_PAGE SELECT * FROM WIKI_PAGE_VERSIONS
 ```
 * Finally remove WIKI_PAGE_VERSIONS
-```
+```SQL
 	DROP TABLE dbo.WIKI_PAGE_VERSIONS
 	go
 ```
 
-######License
+#####License
 
 The JDBCProvider was origially released under the Lesser GNU Public License (LGPL)
   Please see license/lgpl.txt for licensing details
@@ -179,12 +179,12 @@ This project contains software from the Apache Software Foundation (the commons-
 	commons-DBCP home: http://jakarta.apache.org/commons/dbcp/
 	commons-Pool home: http://jakarta.apache.org/commons/pool/
 
-######Original team members
+#####Original team members
 ```
 Xan Gregg
 Soeren Berg Glasius
 Mikkel Troest
 Milt Taylor
 ```
-######Current maintainer
+#####Current maintainer
 David Emerson
