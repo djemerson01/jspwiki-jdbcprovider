@@ -14,18 +14,18 @@ JSPWiki has a pluggable content provider system. This package supplies providers
       Mikkel Troest
       Milt Taylor
 
-SUMMARY
+######SUMMARY
 
 JSPWiki has a pluggable content provider system. This package supplies
 providers for page and attachment content backed by a SQL database.
 
-STATUS:
+######STATUS:
 
     Beta release
     Released 2014-12-26
     Tested with JSPWiki 2.10.1
 
-MOST RECENT CHANGES
+######MOST RECENT CHANGES
 
 * Refactor to build against latest JSPWiki and adapt for building with Maven
 
@@ -53,7 +53,7 @@ sqlanywhere, mssql, postgresql, and sybase.
 Adapting it to other databases should be close to trivial :-)
 
 
-INSTALL
+######INSTALL
 
 * If you're upgrading from a previous version, please read the section UPGRADE 
   after reading this section
@@ -83,7 +83,7 @@ Example of changes to jspwiki.properties:
     jspwiki.jdbcprovider.configuration=jdbcprovider.properties
 
 
-MIGRATING
+######MIGRATING
 
 If you have an old provider in your JSPWiki you can migrate your repository to
 use JDBCProvider. 
@@ -105,18 +105,18 @@ Note: Both the WIKI_PAGE and WIKI_ATT table must be empty (truncated).
 
 * Edit the jdbcprovider.properties:
 
-
+```
     ## Migrate from another page repository. If you define this, both pages 
     ## and attachments will be migrated, if you have set your attachment provider
     ## to JDBCAttachmentProvider. Please provide a full path the the other
     ## provider.
     migrateFromConfiguration = /data/wiki/oldwiki.properties
-
+```
 
 * When done, comment out the above line.
 
 
-UPGRADE
+######UPGRADE
 
 Preferably make a copy of your tables / database before proceding.
 
@@ -128,56 +128,48 @@ version is stored in both WIKI_PAGE and WIKI_PAGE_VERSIONS
 
 
 On Mysql do this:
+```
+INSERT INTO WIKI_PAGE (NAME, VERSION, CHANGE_TIME, CHANGE_BY, CONTENT)
+  SELECT VERSION_NAME, VERSION_NUM, VERSION_MODIFIED, VERSION_MODIFIED_B, VERSION_TEXT
+  FROM <your_old_db>.WIKI_PAGE_VERSIONS;
 
-
-	INSERT INTO WIKI_PAGE (NAME, VERSION, CHANGE_TIME, CHANGE_BY, CONTENT)
-	  SELECT VERSION_NAME, VERSION_NUM, VERSION_MODIFIED, VERSION_MODIFIED_B, VERSION_TEXT
-	  FROM <your_old_db>.WIKI_PAGE_VERSIONS;
-
-	INSERT INTO WIKI_ATT (PAGENAME, FILENAME, VERSION, CHANGE_TIME, CHANGE_BY, DATA, LENGTH)
-      SELECT ATT_PAGENAME, ATT_FILENAME, ATT_VERSION, ATT_MODIFIED, ATT_MODIFIED_BY, ATT_DATA, LENGTH(ATT_DATA)
-      FROM <your_old_db>.WIKI_ATT;
-
+INSERT INTO WIKI_ATT (PAGENAME, FILENAME, VERSION, CHANGE_TIME, CHANGE_BY, DATA, LENGTH)
+  SELECT ATT_PAGENAME, ATT_FILENAME, ATT_VERSION, ATT_MODIFIED, ATT_MODIFIED_BY, ATT_DATA, LENGTH(ATT_DATA)
+  FROM <your_old_db>.WIKI_ATT;
+```
 
 On Sybase do this:
 
 * Remove the foreign key restraint on WIKI_PAGE_VERSIONS :
-
-
+```
 	ALTER TABLE dbo.WIKI_PAGE_VERSIONS DROP CONSTRAINT FK_WIKI_VERSIONS_WIKI_PAGE
 	go
-
+```
 
 * Remove the primary key on WIKI_PAGE and add a new one:
-
-
+```
     ALTER TABLE WIKI_PAGE DROP CONSTRAINT PK_WIKI_PAGE
     go
     ALTER TABLE dbo.WIKI_PAGE ADD CONSTRAINT PK_WIKI_PAGE
         PRIMARY KEY NONCLUSTERED (PAGE_NAME,PAGE_VERSION)
     go
-
-
+```
 * Remove all pages from WIKI_PAGE:
-
-
+```
 	TRUNCATE TABLE dbo.WIKI_PAGE
 	go
-
+```
 * Move all pages from WIKI_PAGE_VERSIONS to WIKI_PAGE:
-
-
+```
 	INSERT WIKI_PAGE SELECT * FROM WIKI_PAGE_VERSIONS
-
-
+```
 * Finally remove WIKI_PAGE_VERSIONS
-
-
+```
 	DROP TABLE dbo.WIKI_PAGE_VERSIONS
 	go
+```
 
-
-LICENSE
+######LICENSE
 
 The JDBCProvider was origially released under the Lesser GNU Public License (LGPL)
   Please see license/lgpl.txt for licensing details
@@ -192,13 +184,12 @@ This project contains software from the Apache Software Foundation (the commons-
 	commons-DBCP home: http://jakarta.apache.org/commons/dbcp/
 	commons-Pool home: http://jakarta.apache.org/commons/pool/
 
-ORIGINAL TEAM MEMBERS
-
-	Xan Gregg
-	Soeren Berg Glasius
-	Mikkel Troest
-	Milt Taylor
-
-CURRENT MAINTAINER
-
-	David Emerson
+######ORIGINAL TEAM MEMBERS
+```
+Xan Gregg
+Soeren Berg Glasius
+Mikkel Troest
+Milt Taylor
+```
+######CURRENT MAINTAINER
+David Emerson
