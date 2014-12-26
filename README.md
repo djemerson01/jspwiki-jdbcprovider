@@ -5,8 +5,8 @@ JSPWiki has a pluggable content provider system. This package supplies providers
 
     JDBCProvider - a JDBC-based page provider for JSPWiki.
 
-    Copyright (C) 2014 David Emerson (david@ebizarts.com)
     Copyright (C) 2004-2007 The JDBCProvider development team.
+    Copyright (C) 2014 David Emerson (david@ebizarts.com)
     
     The original JDBCProvider developer team members are:
       Xan Gregg
@@ -112,6 +112,7 @@ Note: Both the WIKI_PAGE and WIKI_ATT table must be empty (truncated).
     ## provider.
     migrateFromConfiguration = /data/wiki/oldwiki.properties
 
+
 * When done, comment out the above line.
 
 
@@ -146,6 +147,7 @@ On Sybase do this:
 	ALTER TABLE dbo.WIKI_PAGE_VERSIONS DROP CONSTRAINT FK_WIKI_VERSIONS_WIKI_PAGE
 	go
 
+
 * Remove the primary key on WIKI_PAGE and add a new one:
 
 
@@ -154,6 +156,7 @@ On Sybase do this:
     ALTER TABLE dbo.WIKI_PAGE ADD CONSTRAINT PK_WIKI_PAGE
         PRIMARY KEY NONCLUSTERED (PAGE_NAME,PAGE_VERSION)
     go
+
 
 * Remove all pages from WIKI_PAGE:
 
@@ -165,6 +168,7 @@ On Sybase do this:
 
 
 	INSERT WIKI_PAGE SELECT * FROM WIKI_PAGE_VERSIONS
+
 
 * Finally remove WIKI_PAGE_VERSIONS
 
