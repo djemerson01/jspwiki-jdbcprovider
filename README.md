@@ -114,7 +114,7 @@ It is important to understand that the latest version of a page in the old
 version is stored in both WIKI_PAGE and WIKI_PAGE_VERSIONS
 
 
-On Mysql do this:
+<em>On Mysql do this:</em>
 ```SQL
 INSERT INTO WIKI_PAGE (NAME, VERSION, CHANGE_TIME, CHANGE_BY, CONTENT)
   SELECT VERSION_NAME, VERSION_NUM, VERSION_MODIFIED, VERSION_MODIFIED_B, VERSION_TEXT
@@ -125,14 +125,12 @@ INSERT INTO WIKI_ATT (PAGENAME, FILENAME, VERSION, CHANGE_TIME, CHANGE_BY, DATA,
   FROM <your_old_db>.WIKI_ATT;
 ```
 
-On Sybase do this:
-
+<em>On Sybase do this:</em>
 * Remove the foreign key restraint on WIKI_PAGE_VERSIONS :
 ```SQL
 	ALTER TABLE dbo.WIKI_PAGE_VERSIONS DROP CONSTRAINT FK_WIKI_VERSIONS_WIKI_PAGE
 	go
 ```
-
 * Remove the primary key on WIKI_PAGE and add a new one:
 ```SQL
     ALTER TABLE WIKI_PAGE DROP CONSTRAINT PK_WIKI_PAGE
