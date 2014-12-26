@@ -80,27 +80,21 @@ Example of changes to jspwiki.properties:
 
 
 #####Migrating from another page provider
-
 If you have an old provider in your JSPWiki you can migrate your repository to
 use JDBCProvider. 
-
-Note: Both the WIKI_PAGE and WIKI_ATT table must be empty (truncated).
+<em>Note: Both the WIKI_PAGE and WIKI_ATT table must be empty (truncated).</em>
 
 * Make a backup of your current JSPWiki page and attachment repository to a 
   temp directory
-
 * Copy jspwiki.properties in your temp direcory
-
 * Edit the just copied version of jspwiki.properties so that you have
-
-
+```
     jspwiki.pageProvider =VersioningFileProvider (your old page provider)
     jspwiki.fileSystemProvider.pageDir =/data/wiki/pages (the folder with your wiki pages)
     jspwiki.attachmentProvider = BasicAttachmentProvider (your old attachment provider)
     jspwiki.basicAttachmentProvider.storageDir = /data/wiki/attachments (the folder with your attachments)
-
+```
 * Edit the jdbcprovider.properties:
-
 ```
     ## Migrate from another page repository. If you define this, both pages 
     ## and attachments will be migrated, if you have set your attachment provider
@@ -108,12 +102,10 @@ Note: Both the WIKI_PAGE and WIKI_ATT table must be empty (truncated).
     ## provider.
     migrateFromConfiguration = /data/wiki/oldwiki.properties
 ```
-
 * When done, comment out the above line.
 
-
 #####Upgrading from the previous database schema
-Preferably make a copy of your tables / database before proceding.
+<em>Preferably make a copy of your tables / database before proceding.</em>
 
 The new version of the page provider does not use the WIKI_PAGE_VERSIONS any
 longer, but all page versions are stored here. Thus, we need to move the pages 
