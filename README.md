@@ -57,8 +57,8 @@ Adapting it to other databases should be close to trivial :-)
 <em>Basically,</em>
 
  - Copy the dist/JDBCProvider.jar file into JSPWiki's WEB-INF/lib directory.
- - If you are planing to use DBCP, copy commons-dbcp-1.2.1.jar and commons-pool-1.2.jar in lib  to WEB-INF/lib 
- - If you are planning to use C3P0, copy c3p0-0.9.1.jar in lib to WEB-INF/lib
+ - If you are planing to use DBCP, copy commons-dbcp2-2.0.jar and commons-pool2-2.2.jar in lib  to WEB-INF/lib 
+ - If you are planning to use C3P0, copy c3p0-0.9.2.1.jar in lib to WEB-INF/lib
  - Copy the appropiate databasedriver to WEB-INF/lib
  - Copy the jdbcprovider.properties into WEB-INF directory
  - Edit the jdbcprovider.properties so that it reflects your favorite database-connection option.
